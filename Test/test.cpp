@@ -11,10 +11,13 @@ Test::Test(QWidget *parent)
     operations.insert({"XOR", [](quint64 a, quint64 b) -> qint64 { return a ^ b;}});
     operations.insert({"NAND", [](quint64 a, quint64 b) -> qint64 { return ~(a & b);}});
     operations.insert({"NOR", [](quint64 a, quint64 b) -> qint64 { return ~(a | b);}});
+
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(Modify()));
 }
 
-Test::~Test()
-{
+Test::~Test() {
+    delete timer;
     delete ui;
 }
 
@@ -53,14 +56,12 @@ void Test::Modify() {
 void Test::on_buttonBox_accepted() {
     ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(false);
     if (ui->onTimer->isChecked()) {
-        QTimer *timer = new QTimer(this);
-        connect(timer, SIGNAL(timeout()), this, SLOT(Modify()));
+        ui->stopTimer->setEnabled(true);
         int t = ui->timer->text().toInt() * 1000;
         timer->start(t);
     }
     else {
         Modify();
-        close();
     }
 }
 
@@ -90,3 +91,10 @@ void Test::on_once_clicked() {
     if (ui->once->isChecked()) ui->onTimer->setEnabled(false);
     else ui->onTimer->setEnabled(true);
 }
+
+void Test::on_stopTimer_clicked() {
+    timer->stop();
+    ui->buttonBox->button(QDialogButtonBox::Ok)->setEnabled(true);
+    ui->stopTimer->setEnabled(false);
+}
+

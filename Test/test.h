@@ -41,8 +41,11 @@ private slots:
 
     void on_once_clicked();
 
+    void on_stopTimer_clicked();
+
 private:
     Ui::Test *ui;
     std::unordered_map<QString, std::function<qint64(qint64, qint64)>> operations;
+    QTimer *timer;
 };
 #endif // TEST_H

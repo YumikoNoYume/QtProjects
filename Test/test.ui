@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>807</width>
-    <height>411</height>
+    <width>809</width>
+    <height>423</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -217,13 +217,29 @@
      <set>QDialogButtonBox::StandardButton::Cancel|QDialogButtonBox::StandardButton::Ok</set>
     </property>
    </widget>
+   <widget class="QPushButton" name="stopTimer">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>330</y>
+      <width>121</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Остановить таймер</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>807</width>
+     <width>809</width>
      <height>22</height>
     </rect>
    </property>
